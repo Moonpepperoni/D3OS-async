@@ -1,8 +1,11 @@
-# D3OS
-A new research operating system, developed by the [operating systems group](https://www.cs.hhu.de/en/research-groups/operating-systems.html) of the department of computer science at [Heinrich Heine University Düsseldorf](https://www.hhu.de)
+<p align="left">
+  <a href="https://www.uni-duesseldorf.de/home/en/home.html"><img src="media/d3os.png" width=300></a>
+</p>
+
+A new distributed operating system for data centers, developed by the [operating systems group](https://www.cs.hhu.de/en/research-groups/operating-systems.html) of the department of computer science at [Heinrich Heine University Düsseldorf](https://www.hhu.de)
 
 <p align="center">
-  <a href="https://www.uni-duesseldorf.de/home/en/home.html"><img src="media/hhu.svg" width=300></a>
+  <a href="https://www.uni-duesseldorf.de/home/en/home.html"><img src="media/hhu.svg" width=200></a>
 </p>
 
 <p align="center">
@@ -52,3 +55,25 @@ To only build the bootable image _d3os.img_, run:
 ```bash
 cargo make --no-workspace image
 ```
+
+## Debugging 
+
+### In a terminal with gdb
+
+Open a terminal and compile and start D3OS in `qemu` halted by `gdb` with the following commands:
+```bash
+cargo make --no-workspace clean
+cargo make --no-workspace debug
+```
+
+Open another terminal and start `gdb` with:
+```bash
+cargo make --no-workspace gdb
+```
+This will fire booting D3OS and stop in `boot.rs::start`.
+
+Setting a breakpoint in `gdb`:
+```bash
+break kernel::naming::api::init
+```
+For further commands check [GDB Quick Reference](docs/gdb-commands.pdf).
